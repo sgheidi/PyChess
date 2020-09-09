@@ -1,4 +1,4 @@
-# ♚ Chess
+# ♚ PyChess
 
 Fully-featured Chess game written using Pygame.
 
