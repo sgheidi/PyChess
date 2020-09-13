@@ -16,3 +16,4 @@ class White_Attr(object):
     self.castled = 0
     self.opening_book = 0
     self.ai = 1
+    self.verbose = 0

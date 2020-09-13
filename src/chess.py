@@ -45,7 +45,7 @@ def event_loop():
             Black_.play()
 
     Board.draw_board()
-    if len(Queue.row) >= 1:
+    if len(Queue.row) >= 1 and not (Black.ai and White.ai):
       Board.shade(Queue.row[-1],Queue.col[-1])
     Board.show_black()
     Board.show_white()

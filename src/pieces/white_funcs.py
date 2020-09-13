@@ -234,6 +234,68 @@ class White_Funcs(object):
       White.turn = True
       Black.turn = True
 
+  def destroy(self, piece):
+    "Destroy a piece."
+    if piece == "K":
+      WhiteKing.alive = 0
+      WhiteKing.col = -1
+      WhiteKing.row = -1
+      WhiteKing.x = -1
+      WhiteKing.y = -1
+      WhiteKing.movelist.clear()
+    # queen
+    for i in range(White.num_queens):
+      if piece == "Q" + str(i):
+        WhiteQueen.alive[i] = 0
+        WhiteQueen.col[i] = -1
+        WhiteQueen.row[i] = -1
+        WhiteQueen.x[i] = -1
+        WhiteQueen.y[i] = -1
+        WhiteQueen.movelist[i].clear()
+        WhiteQueen.protecting_movelist[i].clear()
+        WhiteQueen.pinned_movelist[i].clear()
+        WhiteQueen.in_path[i] = 0
+    # pawn
+    for i in range(8):
+      if piece == "P" + str(i):
+        WhitePawn.alive[i] = 0
+        WhitePawn.col[i] = -1
+        WhitePawn.row[i] = -1
+        WhitePawn.x[i] = -1
+        WhitePawn.y[i] = -1
+        WhitePawn.movelist[i].clear()
+        WhitePawn.hit_movelist[i].clear()
+    # bishop, rook, knight
+    for i in range(2):
+      if piece == "B" + str(i):
+        WhiteBishop.alive[i] = 0
+        WhiteBishop.col[i] = -1
+        WhiteBishop.row[i] = -1
+        WhiteBishop.x[i] = -1
+        WhiteBishop.y[i] = -1
+        WhiteBishop.movelist[i].clear()
+        WhiteBishop.protecting_movelist[i].clear()
+        WhiteBishop.pinned_movelist[i].clear()
+        WhiteBishop.in_path[i] = 0
+      if piece == "R" + str(i):
+        WhiteRook.alive[i] = 0
+        WhiteRook.col[i] = -1
+        WhiteRook.row[i] = -1
+        WhiteRook.x[i] = -1
+        WhiteRook.y[i] = -1
+        WhiteRook.movelist[i].clear()
+        WhiteRook.protecting_movelist[i].clear()
+        WhiteRook.pinned_movelist[i].clear()
+        WhiteRook.in_path[i] = 0
+      if piece == "N" + str(i):
+        WhiteKnight.alive[i] = 0
+        WhiteKnight.col[i] = -1
+        WhiteKnight.row[i] = -1
+        WhiteKnight.x[i] = -1
+        WhiteKnight.y[i] = -1
+        WhiteKnight.movelist[i].clear()
+        WhiteKnight.protecting_movelist[i].clear()
+
   def check_kill(self, row, col, sound):
     """Once a white piece has moved to a new position, check
     if a black piece is already there. If so, kill it.

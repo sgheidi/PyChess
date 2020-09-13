@@ -10,6 +10,7 @@ testing = False
 undo_key = True
 debug_key = True
 verbose = False
+env = "only_pawns1"
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (RES, RES/6)
 win = pg.display.set_mode((RES,RES+OFFSET))
@@ -67,3 +68,34 @@ from black_ai import Black_AI
 BlackAI = Black_AI()
 from white_ai import White_AI
 WhiteAI = White_AI()
+
+def init():
+  if env == "" or env == None:
+    return
+  elif env == "only_pawns0":
+    Black_.destroy("Q0")
+    for i in range(2):
+      Black_.destroy("B" + str(i))
+      Black_.destroy("R" + str(i))
+      Black_.destroy("N" + str(i))
+    White_.destroy("Q0")
+    for i in range(2):
+      White_.destroy("B" + str(i))
+      White_.destroy("R" + str(i))
+      White_.destroy("N" + str(i))
+  elif env == "only_pawns1":
+    for i in range(4):
+      Black_.destroy("P" + str(i))
+    Black_.destroy("Q0")
+    for i in range(2):
+      Black_.destroy("B" + str(i))
+      Black_.destroy("R" + str(i))
+      Black_.destroy("N" + str(i))
+    for i in range(2, 8):
+      White_.destroy("P" + str(i))
+    White_.destroy("Q0")
+    for i in range(2):
+      White_.destroy("B" + str(i))
+      White_.destroy("R" + str(i))
+      White_.destroy("N" + str(i))
+init()

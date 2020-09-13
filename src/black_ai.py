@@ -14,8 +14,7 @@ class Black_AI(object):
       try:
         Black_.move_piece(move["piece"], move["pos"][0], move["pos"][1], True)
       except:
-        if verbose:
-          print("No move found.")
+        print("No move found.") if Black.verbose else None
         return
 
   def find_best_move(self):
@@ -28,22 +27,24 @@ class Black_AI(object):
         if k == "CK":
           Black_.castle_king(False)
           score = self.minimax(self.depth, -10000, 10000, "W")
+          print("Undoing " + i + str(k)) if Black.verbose else None
           Board.undo()
         elif k == "CQ":
           Black_.castle_queen(False)
           score = self.minimax(self.depth, -10000, 10000, "W")
+          print("Undoing " + i + str(k)) if Black.verbose else None
           Board.undo()
         else:
           Black_.move_piece(i, k[0], k[1], False)
           score = self.minimax(self.depth, -10000, 10000, "W")
+          print("Undoing " + i + str(k)) if Black.verbose else None
           Board.undo()
         if score >= best_move["score"]:
           best_move["score"] = score
           best_move["piece"] = i
           best_move["pos"] = k
-    # if verbose:
-    #   print("Returned best move %s to %s with score %s"%(best_move["piece"], best_move["pos"],
-    # best_move["score"]))
+    print("Returned best move %s to %s with score %s"%(best_move["piece"], best_move["pos"],
+    best_move["score"])) if Black.verbose else None
     Board.unfreeze()
     return best_move
 
@@ -53,6 +54,7 @@ class Black_AI(object):
     white_moves = helper.get_all_white_moves().copy()
     if n == 0:
       return -helper.evaluate_pos()
+    # minimizing player
     if player == "B":
       best_move = -9999
       for i in black_moves:
@@ -60,14 +62,17 @@ class Black_AI(object):
           if k == "CK":
             Black_.castle_king(False)
             best_move = max(best_move, self.minimax(n-1, alpha, beta, "W"))
+            print("Undoing " + i + str(k)) if Black.verbose else None
             Board.undo()
           elif k == "CQ":
             Black_.castle_queen(False)
             best_move = max(best_move, self.minimax(n-1, alpha, beta, "W"))
+            print("Undoing " + i + str(k)) if Black.verbose else None
             Board.undo()
           else:
             Black_.move_piece(i, k[0], k[1], False)
             best_move = max(best_move, self.minimax(n-1, alpha, beta, "W"))
+            print("Undoing " + i + str(k)) if Black.verbose else None
             Board.undo()
           alpha = max(alpha, best_move)
           if beta <= alpha:
@@ -82,6 +87,7 @@ class Black_AI(object):
               return 9999
             else:
               return -9999
+    # maximizing player
     else:
       best_move = 9999
       for i in white_moves:
@@ -89,14 +95,17 @@ class Black_AI(object):
           if k == "CK":
             White_.castle_king(False)
             best_move = min(best_move, self.minimax(n-1, alpha, beta, "B"))
+            print("Undoing " + i + str(k)) if Black.verbose else None
             Board.undo()
           elif k == "CQ":
             White_.castle_queen(False)
             best_move = min(best_move, self.minimax(n-1, alpha, beta, "B"))
+            print("Undoing " + i + str(k)) if Black.verbose else None
             Board.undo()
           else:
             White_.move_piece(i, k[0], k[1], False)
             best_move = min(best_move, self.minimax(n-1, alpha, beta, "B"))
+            print("Undoing " + i + str(k)) if Black.verbose else None
             Board.undo()
           beta = min(beta, best_move)
           if beta <= alpha:

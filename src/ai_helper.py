@@ -60,10 +60,38 @@ class Helper(object):
         moves["R" + str(i)] = WhiteRook.movelist[i].copy()
     return self.shuffle(moves)
 
+  def good_pawn_structure_black(self):
+    """A bad pawn structure is, for example, {1, 0, 1, 0, 1, 0, 1, 0}: where any subset of
+    the set of 8 pawns are alternating as 1 -> 0 or 0 -> 1. Avoid this (causes weak light/dark
+    squares in the spaces in between).
+    """
+    for i in range(8):
+      if BlackPawn.alive[i]:
+        if i <= 5:
+          if BlackPawn.col[i+2]:
+            return False
+        elif i >= 2:
+          if BlackPawn.col[i-2]:
+            return False
+    return True
+
   def evaluate_pos(self):
     """Evaluation current board position. Returns a number.
     Low eval number -> good for black.
     High eval number -> good for white.
+    ***
+    Evaluation scores are as follows:
+    * 0.5 score for castling
+    * 0.5 score for bishop pair
+    * 0.25 score for any open files (R, B, Q)
+    * 0.5 score for king safety
+    * 0.5 score for good knight outposts (i.e a knight guarded by pawn which has no
+      pawns that can attack it)
+    * 2.0 score for good pawn structure
+    * 5.5 score for good knight forks
+    * 1.0 score for past pawns
+    * 1.0 score for protected past pawns
+    * 10.0 score for pawn promotion
     """
     score = 0
     if BlackKing.alive:
@@ -76,7 +104,8 @@ class Helper(object):
         score -= 1
         # promote
         if BlackPawn.row[i] == 7:
-          score -= 7
+          print("This is good!")
+          score -= 10
     for i in range(2):
       if BlackBishop.alive[i]:
         score -= 3
@@ -86,6 +115,10 @@ class Helper(object):
         score -= 5
     if Black.castled == 1:
       score -= 0.5
+    if BlackBishop.alive[0] and BlackBishop.alive[1]:
+      score -= 0.5
+    if self.good_pawn_structure_black():
+      score -= 4
 
     if WhiteKing.alive:
       score += 5
@@ -97,7 +130,7 @@ class Helper(object):
         score += 1
         # promote
         if WhitePawn.row[i] == 0:
-          score += 7
+          score += 10
     for i in range(2):
       if WhiteBishop.alive[i]:
         score += 3

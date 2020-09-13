@@ -14,8 +14,7 @@ class White_AI(object):
       try:
         White_.move_piece(move["piece"], move["pos"][0], move["pos"][1], True)
       except:
-        if verbose:
-          print("No move found.")
+        print("No move found.") if White.verbose else None
         return
 
   def find_best_move(self):
@@ -41,9 +40,8 @@ class White_AI(object):
           best_move["score"] = score
           best_move["piece"] = i
           best_move["pos"] = k
-    if verbose:
-      print("Returned best move %s to %s with score %s"%(best_move["piece"], best_move["pos"],
-    best_move["score"]))
+    print("Returned best move %s to %s with score %s"%(best_move["piece"], best_move["pos"],
+    best_move["score"])) if White.verbose else None
     Board.unfreeze()
     return best_move
 
@@ -61,14 +59,17 @@ class White_AI(object):
           if k == "CK":
             Black_.castle_king(False)
             best_move = min(best_move, self.minimax(n-1, alpha, beta, "W"))
+            print("Undoing " + i + str(k)) if White.verbose else None
             Board.undo()
           elif k == "CQ":
             Black_.castle_queen(False)
             best_move = min(best_move, self.minimax(n-1, alpha, beta, "W"))
+            print("Undoing " + i + str(k)) if White.verbose else None
             Board.undo()
           else:
             Black_.move_piece(i, k[0], k[1], False)
             best_move = min(best_move, self.minimax(n-1, alpha, beta, "W"))
+            print("Undoing " + i + str(k)) if White.verbose else None
             Board.undo()
           alpha = max(alpha, best_move)
           if beta <= alpha:
@@ -91,14 +92,17 @@ class White_AI(object):
           if k == "CK":
             White_.castle_king(False)
             best_move = max(best_move, self.minimax(n-1, alpha, beta, "B"))
+            print("Undoing " + i + str(k)) if White.verbose else None
             Board.undo()
           elif k == "CQ":
             White_.castle_queen(False)
             best_move = max(best_move, self.minimax(n-1, alpha, beta, "B"))
+            print("Undoing " + i + str(k)) if White.verbose else None
             Board.undo()
           else:
             White_.move_piece(i, k[0], k[1], False)
             best_move = max(best_move, self.minimax(n-1, alpha, beta, "B"))
+            print("Undoing " + i + str(k)) if White.verbose else None
             Board.undo()
           beta = min(beta, best_move)
           if beta <= alpha:

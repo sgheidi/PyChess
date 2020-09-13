@@ -7,6 +7,69 @@ class Black_Funcs(object):
     self.White_ = White_
     self.piece = ""
 
+  def destroy(self, piece):
+    "Destroy a piece."
+    if piece == "K":
+      BlackKing.alive = 0
+      BlackKing.col = -1
+      BlackKing.row = -1
+      BlackKing.x = -1
+      BlackKing.y = -1
+      BlackKing.movelist.clear()
+    # queen
+    for i in range(Black.num_queens):
+      if piece == "Q" + str(i):
+        BlackQueen.alive[i] = 0
+        BlackQueen.col[i] = -1
+        BlackQueen.row[i] = -1
+        BlackQueen.x[i] = -1
+        BlackQueen.y[i] = -1
+        BlackQueen.movelist[i].clear()
+        BlackQueen.protecting_movelist[i].clear()
+        BlackQueen.pinned_movelist[i].clear()
+        BlackQueen.in_path[i] = 0
+    # pawn
+    for i in range(8):
+      if piece == "P" + str(i):
+        BlackPawn.alive[i] = 0
+        BlackPawn.col[i] = -1
+        BlackPawn.row[i] = -1
+        BlackPawn.x[i] = -1
+        BlackPawn.y[i] = -1
+        BlackPawn.movelist[i].clear()
+        BlackPawn.hit_movelist[i].clear()
+    # bishop, rook, knight
+    for i in range(2):
+      if piece == "B" + str(i):
+        BlackBishop.alive[i] = 0
+        BlackBishop.col[i] = -1
+        BlackBishop.row[i] = -1
+        BlackBishop.x[i] = -1
+        BlackBishop.y[i] = -1
+        BlackBishop.movelist[i].clear()
+        BlackBishop.protecting_movelist[i].clear()
+        BlackBishop.pinned_movelist[i].clear()
+        BlackBishop.in_path[i] = 0
+      if piece == "R" + str(i):
+        BlackRook.alive[i] = 0
+        BlackRook.col[i] = -1
+        BlackRook.row[i] = -1
+        BlackRook.x[i] = -1
+        BlackRook.y[i] = -1
+        BlackRook.movelist[i].clear()
+        BlackRook.protecting_movelist[i].clear()
+        BlackRook.pinned_movelist[i].clear()
+        BlackRook.in_path[i] = 0
+      if piece == "N" + str(i):
+        BlackKnight.alive[i] = 0
+        BlackKnight.col[i] = -1
+        BlackKnight.row[i] = -1
+        BlackKnight.x[i] = -1
+        BlackKnight.y[i] = -1
+        BlackKnight.movelist[i].clear()
+        BlackKnight.protecting_movelist[i].clear()
+
+
   def get_freeze(self):
     return Board.freeze
 
@@ -19,7 +82,6 @@ class Black_Funcs(object):
       AI.make_move()
       White.turn = True
       Black.turn = False
-      pg.display.update()
     else:
       if Black.blocks[Queue.row[-1]][Queue.col[-1]] == 1:
         self.piece = self.get_piece(Queue.row[-1], Queue.col[-1])
