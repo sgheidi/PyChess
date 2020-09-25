@@ -14,7 +14,7 @@ class White_Funcs(object):
     if White.ai:
       from white_ai import White_AI
       AI = White_AI()
-      AI.make_move()
+      AI.generate_move()
       White.turn = False
       Black.turn = True
     else:

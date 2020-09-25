@@ -12,7 +12,7 @@ class Black_Attr(object):
     self.BISHOP_PAIR_REWARD = 0.0
     self.KING_SAFETY_REWARD = 0.0
     self.PROMOTION_REWARD = 0.0
-    self.OPENFILE_REWARD = 0.0
+    self.RBQ_OPENFILE_REWARD = 0.0
     # ********************
     self.blocks = [[0 for i in range(8)] for j in range(8)]
     for row in range(8):

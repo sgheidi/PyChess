@@ -5,7 +5,7 @@ class Helper(object):
     self.BLACK_OPENFILE_REWARD = 0.5
 
   def shuffle(self, di):
-    "Shuffle dict."
+    "Shuffle dict `di`."
     temp = di.copy()
     new_di = {}
     for i in temp.copy():
@@ -67,7 +67,7 @@ class Helper(object):
     the set of 8 pawns are alternating as 1 -> 0 or 0 -> 1. Avoid this (causes weak light/dark
     squares in the spaces in between).
     """
-    # fix this. difficult
+    # fix. this is difficult
     return False
     for i in range(8):
       if BlackPawn.alive[i]:
@@ -79,7 +79,16 @@ class Helper(object):
             return False
     return True
 
-  def openfiles_black(self, score):
+  def RBQ_openfiles_black(self, score):
+    "R, B, Q get rewards for as many moves they have in their movelists (i.e len(movelist))."
+    for i in range(Black.num_queens):
+      score -= self.BLACK_OPENFILE_REWARD*len(BlackQueen.movelist[i])
+    for i in range(2):
+      score -= self.BLACK_OPENFILE_REWARD*len(BlackRook.movelist[i])
+      score -= self.BLACK_OPENFILE_REWARD*len(BlackBishop.movelist[i])
+    return score
+
+  def RBQ_openfiles_white(self, score):
     "R, B, Q get rewards for as many moves they have in their movelists (i.e len(movelist))."
     for i in range(Black.num_queens):
       score -= self.BLACK_OPENFILE_REWARD*len(BlackQueen.movelist[i])
@@ -133,7 +142,7 @@ class Helper(object):
       score -= 0.5
     if self.good_pawn_structure_black():
       score -= 4
-    score = self.openfiles_black(score)
+    score = self.RBQ_openfiles_black(score)
 
     if WhiteKing.alive:
       score += 5

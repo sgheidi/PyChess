@@ -79,7 +79,7 @@ class Black_Funcs(object):
     if Black.ai:
       from black_ai import Black_AI
       AI = Black_AI()
-      AI.make_move()
+      AI.generate_move()
       White.turn = True
       Black.turn = False
     else:

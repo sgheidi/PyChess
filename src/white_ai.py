@@ -4,7 +4,7 @@ class White_AI(object):
   def __init__(self):
     self.depth = 2
 
-  def make_move(self):
+  def generate_move(self):
     move = self.find_best_move().copy()
     if move["piece"] == "K" and move["pos"] == "CK":
       White_.castle_king(True)

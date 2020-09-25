@@ -4,7 +4,7 @@ class Black_AI(object):
   def __init__(self):
     self.depth = 2
 
-  def make_move(self):
+  def generate_move(self):
     if Black.opening_book and Black.still_opening:
       pass
       # Black_.play_opening()
