@@ -12,7 +12,7 @@ To set up: clone repo & run ```pip install -r requirements.txt```
 To run: run ```py chess.py```.
 
 ## Features
-- Chess AI which uses minimax & alpha-beta pruning to search the game tree and find the best move
+- Chess AI which uses minimax & alpha-beta pruning to search the game tree and find the best move (current AI ELO is around ~950)
 - Pinning pieces
 - Checking, checkmating
 - En passant
