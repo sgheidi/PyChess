@@ -3,6 +3,7 @@ from common import *
 class Helper(object):
   def __init__(self):
     self.BLACK_OPENFILE_REWARD = 0.5
+    self.WHITE_OPENFILE_REWARD = 0.5
 
   def shuffle(self, di):
     "Shuffle dict `di`."
@@ -90,11 +91,11 @@ class Helper(object):
 
   def RBQ_openfiles_white(self, score):
     "R, B, Q get rewards for as many moves they have in their movelists (i.e len(movelist))."
-    for i in range(Black.num_queens):
-      score -= self.BLACK_OPENFILE_REWARD*len(BlackQueen.movelist[i])
+    for i in range(White.num_queens):
+      score += self.WHITE_OPENFILE_REWARD*len(WhiteQueen.movelist[i])
     for i in range(2):
-      score -= self.BLACK_OPENFILE_REWARD*len(BlackRook.movelist[i])
-      score -= self.BLACK_OPENFILE_REWARD*len(BlackBishop.movelist[i])
+      score += self.WHITE_OPENFILE_REWARD*len(WhiteRook.movelist[i])
+      score += self.WHITE_OPENFILE_REWARD*len(WhiteBishop.movelist[i])
     return score
 
   def evaluate_pos(self):
@@ -102,7 +103,7 @@ class Helper(object):
     Low eval number -> good for black.
     High eval number -> good for white.
     ***
-    Evaluation scores are as follows:
+    Some evaluation scores are as follows:
     * 0.5 score for castling
     * 0.5 score for bishop pair
     * 0.25 score for any open files (R, B, Q)
@@ -164,4 +165,5 @@ class Helper(object):
         score += 5
     if White.castled == 1:
       score += 0.5
+    score = self.RBQ_openfiles_white(score)
     return float(score)
