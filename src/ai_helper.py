@@ -1,6 +1,8 @@
 from common import *
 
 class Helper(object):
+  def __init__(self):
+    self.BLACK_OPENFILE_REWARD = 0.5
 
   def shuffle(self, di):
     "Shuffle dict."
@@ -65,15 +67,26 @@ class Helper(object):
     the set of 8 pawns are alternating as 1 -> 0 or 0 -> 1. Avoid this (causes weak light/dark
     squares in the spaces in between).
     """
+    # fix this. difficult
+    return False
     for i in range(8):
       if BlackPawn.alive[i]:
         if i <= 5:
-          if BlackPawn.col[i+2]:
+          if (BlackPawn.col[i+2] == (BlackPawn.col[i] + 2)) and BlackPawn.col[i-1]:
             return False
         elif i >= 2:
-          if BlackPawn.col[i-2]:
+          if BlackPawn.col[i-2] == (BlackPawn.col[i] - 2):
             return False
     return True
+
+  def openfiles_black(self, score):
+    "R, B, Q get rewards for as many moves they have in their movelists (i.e len(movelist))."
+    for i in range(Black.num_queens):
+      score -= self.BLACK_OPENFILE_REWARD*len(BlackQueen.movelist[i])
+    for i in range(2):
+      score -= self.BLACK_OPENFILE_REWARD*len(BlackRook.movelist[i])
+      score -= self.BLACK_OPENFILE_REWARD*len(BlackBishop.movelist[i])
+    return score
 
   def evaluate_pos(self):
     """Evaluation current board position. Returns a number.
@@ -92,6 +105,7 @@ class Helper(object):
     * 1.0 score for past pawns
     * 1.0 score for protected past pawns
     * 10.0 score for pawn promotion
+    * -2n score for n-stacked pawns
     """
     score = 0
     if BlackKing.alive:
@@ -119,6 +133,7 @@ class Helper(object):
       score -= 0.5
     if self.good_pawn_structure_black():
       score -= 4
+    score = self.openfiles_black(score)
 
     if WhiteKing.alive:
       score += 5

@@ -5,6 +5,9 @@ class Black_AI(object):
     self.depth = 2
 
   def make_move(self):
+    if Black.opening_book and Black.still_opening:
+      pass
+      # Black_.play_opening()
     move = self.find_best_move().copy()
     if move["piece"] == "K" and move["pos"] == "CK":
       Black_.castle_king(True)
@@ -38,6 +41,7 @@ class Black_AI(object):
           Black_.move_piece(i, k[0], k[1], False)
           score = self.minimax(self.depth, -10000, 10000, "W")
           print("Undoing " + i + str(k)) if Black.verbose else None
+          print(i, k, score)
           Board.undo()
         if score >= best_move["score"]:
           best_move["score"] = score

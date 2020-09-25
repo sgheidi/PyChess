@@ -77,7 +77,7 @@ class Black_Funcs(object):
     if Board.stalemate or Board.checkmate or Board.insufficient_mat or Board.tfr:
       return
     if Black.ai:
-      from white_ai import Black_AI
+      from black_ai import Black_AI
       AI = Black_AI()
       AI.make_move()
       White.turn = True

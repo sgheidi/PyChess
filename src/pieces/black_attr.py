@@ -1,9 +1,19 @@
 from common import *
 
 class Black_Attr(object):
-  "A global namespace for data relating to black pieces."
+  "A global namespace for attributes relating to black pieces."
 
   def __init__(self):
+    # * AI rewards *
+    self.PASSED_PAWN_REWARD = 0.0
+    self.CONNECTED_PASSED_PAWN_REWARD = 0.0
+    self.KNIGHT_OUTPOST_REWARD = 0.0
+    self.PAWN_STRUCTURE_REWARD = 0.0
+    self.BISHOP_PAIR_REWARD = 0.0
+    self.KING_SAFETY_REWARD = 0.0
+    self.PROMOTION_REWARD = 0.0
+    self.OPENFILE_REWARD = 0.0
+    # ********************
     self.blocks = [[0 for i in range(8)] for j in range(8)]
     for row in range(8):
       for col in range(8):
@@ -17,5 +27,6 @@ class Black_Attr(object):
     self.opening_book = 0
     self.ai = 1
     self.verbose = 0
+    self.still_opening = 1
     if testing:
       self.turn = True

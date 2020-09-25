@@ -10,7 +10,7 @@ testing = False
 undo_key = True
 debug_key = True
 verbose = False
-env = "only_pawns1"
+env = ""
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (RES, RES/6)
 win = pg.display.set_mode((RES,RES+OFFSET))
