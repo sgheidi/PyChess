@@ -9,7 +9,10 @@ OFFSET = 0
 testing = False
 undo_key = True
 debug_key = True
-verbose = False
+verbose = True
+
+# choose from "only_pawns0", "only_pawns1", "knight_outpost0", "checkmate0", "checkmate1",
+# "stalamate0", "castle_k", "castle_q"
 env = ""
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (RES, RES/6)

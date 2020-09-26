@@ -1,10 +1,6 @@
 from common import *
 
 class Helper(object):
-  def __init__(self):
-    self.BLACK_OPENFILE_REWARD = 0.5
-    self.WHITE_OPENFILE_REWARD = 0.5
-
   def shuffle(self, di):
     "Shuffle dict `di`."
     temp = di.copy()
@@ -83,39 +79,40 @@ class Helper(object):
   def RBQ_openfiles_black(self, score):
     "R, B, Q get rewards for as many moves they have in their movelists (i.e len(movelist))."
     for i in range(Black.num_queens):
-      score -= self.BLACK_OPENFILE_REWARD*len(BlackQueen.movelist[i])
+      score -= Black.RBQ_OPENFILE_REWARD*len(BlackQueen.movelist[i])
     for i in range(2):
-      score -= self.BLACK_OPENFILE_REWARD*len(BlackRook.movelist[i])
-      score -= self.BLACK_OPENFILE_REWARD*len(BlackBishop.movelist[i])
+      score -= Black.RBQ_OPENFILE_REWARD*len(BlackRook.movelist[i])
+      score -= Black.RBQ_OPENFILE_REWARD*len(BlackBishop.movelist[i])
     return score
 
   def RBQ_openfiles_white(self, score):
     "R, B, Q get rewards for as many moves they have in their movelists (i.e len(movelist))."
     for i in range(White.num_queens):
-      score += self.WHITE_OPENFILE_REWARD*len(WhiteQueen.movelist[i])
+      score += White.RBQ_OPENFILE_REWARD*len(WhiteQueen.movelist[i])
     for i in range(2):
-      score += self.WHITE_OPENFILE_REWARD*len(WhiteRook.movelist[i])
-      score += self.WHITE_OPENFILE_REWARD*len(WhiteBishop.movelist[i])
+      score += White.RBQ_OPENFILE_REWARD*len(WhiteRook.movelist[i])
+      score += White.RBQ_OPENFILE_REWARD*len(WhiteBishop.movelist[i])
     return score
+
+  def knight_outpost_black(self, score):
+    """A good knight outpost is where it is protected by a pawn, and no enemy pawns can attack it,
+    either because no enemy pawns are on parallel files or the knight is on the same row or ahead
+    of them.
+    """
+    pass
+
+  def knight_fork_black(self, score):
+    "Forking rooks and queens with knight has a very high reward."
+    pass
+
+  def early_piece_development_black(self, score):
+    "A moderate score is given for early piece development of non-pawn pieces."
+    pass
 
   def evaluate_pos(self):
     """Evaluation current board position. Returns a number.
     Low eval number -> good for black.
     High eval number -> good for white.
-    ***
-    Some evaluation scores are as follows:
-    * 0.5 score for castling
-    * 0.5 score for bishop pair
-    * 0.25 score for any open files (R, B, Q)
-    * 0.5 score for king safety
-    * 0.5 score for good knight outposts (i.e a knight guarded by pawn which has no
-      pawns that can attack it)
-    * 2.0 score for good pawn structure
-    * 5.5 score for good knight forks
-    * 1.0 score for past pawns
-    * 1.0 score for protected past pawns
-    * 10.0 score for pawn promotion
-    * -2n score for n-stacked pawns
     """
     score = 0
     if BlackKing.alive:
@@ -128,7 +125,6 @@ class Helper(object):
         score -= 1
         # promote
         if BlackPawn.row[i] == 7:
-          print("This is good!")
           score -= 10
     for i in range(2):
       if BlackBishop.alive[i]:
@@ -138,11 +134,9 @@ class Helper(object):
       if BlackRook.alive[i]:
         score -= 5
     if Black.castled == 1:
-      score -= 0.5
+      score -= 1.0
     if BlackBishop.alive[0] and BlackBishop.alive[1]:
-      score -= 0.5
-    if self.good_pawn_structure_black():
-      score -= 4
+      score -= Black.BISHOP_PAIR_REWARD
     score = self.RBQ_openfiles_black(score)
 
     if WhiteKing.alive:
@@ -164,6 +158,6 @@ class Helper(object):
       if WhiteRook.alive[i]:
         score += 5
     if White.castled == 1:
-      score += 0.5
+      score += 1.0
     score = self.RBQ_openfiles_white(score)
     return float(score)

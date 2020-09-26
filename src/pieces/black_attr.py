@@ -9,11 +9,13 @@ class Black_Attr(object):
     self.CONNECTED_PASSED_PAWN_REWARD = 0.0
     self.KNIGHT_OUTPOST_REWARD = 0.0
     self.PAWN_STRUCTURE_REWARD = 0.0
-    self.BISHOP_PAIR_REWARD = 0.0
+    self.BISHOP_PAIR_REWARD = 0.90
     self.KING_SAFETY_REWARD = 0.0
     self.PROMOTION_REWARD = 0.0
-    self.RBQ_OPENFILE_REWARD = 0.0
+    self.RBQ_OPENFILE_REWARD = 0.05
     self.STACKED_PAWNS_PENALTY = 0.0
+    self.EARLY_PIECE_DEVELOPMENT_REWARD = 0.0
+    self.KNIGHT_FORK_REWARD = 0.0
     # ********************
     self.blocks = [[0 for i in range(8)] for j in range(8)]
     for row in range(8):

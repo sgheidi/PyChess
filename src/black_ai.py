@@ -6,8 +6,9 @@ class Black_AI(object):
 
   def generate_move(self):
     if Black.opening_book and Black.still_opening:
-      pass
-      # Black_.play_opening()
+      if Board.total_moves == 1 and WhitePawn.row[3] == 4 and WhitePawn.col[3] == 3:
+        Black_.move_piece("P3", 3, 3, True)
+        return
     move = self.find_best_move().copy()
     if move["piece"] == "K" and move["pos"] == "CK":
       Black_.castle_king(True)

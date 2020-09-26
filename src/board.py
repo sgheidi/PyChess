@@ -137,7 +137,6 @@ class Game_Board(object):
     if (Black.ai or White.ai) and self.freeze and len(self.moves["piece"]) <= self.total_moves:
       print("AI undo'ing too far") if verbose else None
       return
-    # print("Undoing...") if verbose else None
     if (self.checkmate or self.stalemate or self.insufficient_mat) and self.freeze == False:
       self.checkmate = False
       self.stalemate = False

@@ -69,7 +69,6 @@ class Black_Funcs(object):
         BlackKnight.movelist[i].clear()
         BlackKnight.protecting_movelist[i].clear()
 
-
   def get_freeze(self):
     return Board.freeze
 
