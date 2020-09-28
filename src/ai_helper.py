@@ -109,8 +109,22 @@ class Helper(object):
     "A moderate score is given for early piece development of non-pawn pieces."
     pass
 
+  def connected_pawns_black(self, score):
+    "Reward given for any pawn chain (i.e pawn connected by at least another pawn)."
+    pass
+
+  def n_stacked_pawns_black(self, score):
+    """A good evaluator (penalty) for n-stacked pawns on each file is as follows:
+    (1.2i + 2.5j + 3.0k), where i is the number of files where there are 2-stacked pawns,
+    j for 3-stacked pawns and k for 4-stacked pawns.
+    For example, if there are 2 files with 2-stacked pawns, the penalty would be 1.2 * 2 = 2.4
+    and if there is 1 file with 2-stacked pawns and 1 file with 3-stacked pawns, the correponding
+    penalty would be 1.2(1) + 2.5(1) = 3.7.
+    """
+    pass
+
   def evaluate_pos(self):
-    """Evaluation current board position. Returns a number.
+    """Evaluation of current board position. Returns a score.
     Low eval number -> good for black.
     High eval number -> good for white.
     """

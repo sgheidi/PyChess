@@ -13,6 +13,7 @@ To run: run ```py chess.py```.
 
 ## Features
 - Chess AI which uses minimax & alpha-beta pruning to search the game tree and find the best move (current AI ELO is around ~950)
+- Player vs. Player, Player vs. AI, even AI vs. AI!
 - Pinning pieces
 - Checking, checkmating
 - En passant
@@ -24,3 +25,9 @@ To run: run ```py chess.py```.
   - Insufficient material
   - 3-fold repetition
   - 50-move rule
+
+## Command-line switches
+Default playing mode is Player vs. Player. To play a different mode, use the following switches:
+- ```--black``` to play against White AI.
+- ```--white``` to play against White AI.
+- ```--ai-vs-ai``` to watch 2 AI's battle!

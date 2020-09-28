@@ -26,5 +26,11 @@ class White_Attr(object):
     self.en_passant = [0 for i in range(8)]
     self.castled = 0
     self.opening_book = 0
-    self.ai = 0
+    if len(sys.argv) == 1:
+      self.ai = 0
+    else:
+      if sys.argv[1] == "--white":
+        self.ai = 0
+      else:
+        self.ai = 1
     self.verbose = 0

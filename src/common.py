@@ -9,11 +9,19 @@ OFFSET = 0
 testing = False
 undo_key = True
 debug_key = True
-verbose = True
+verbose = False
 
 # choose from "only_pawns0", "only_pawns1", "knight_outpost0", "checkmate0", "checkmate1",
 # "stalamate0", "castle_k", "castle_q"
 env = ""
+
+accepted_args = ["--black", "--white", "--ai-vs-ai"]
+if len(sys.argv) > 2:
+  print("Too many arguments given. Exiting...")
+  sys.exit()
+elif len(sys.argv) == 2 and sys.argv[1] not in accepted_args:
+  print("Unknown argment given. Exiting...")
+  sys.exit()
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (RES, RES/6)
 win = pg.display.set_mode((RES,RES+OFFSET))
