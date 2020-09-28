@@ -30,4 +30,4 @@ To run: run ```py chess.py```.
 Default playing mode is Player vs. Player. To play a different mode, use the following switches:
 - ```--black``` to play against White AI.
 - ```--white``` to play against White AI.
-- ```--ai-vs-ai``` to watch 2 AI's battle!
+- ```--ai-vs-ai``` to watch 2 AI's battle it out!
