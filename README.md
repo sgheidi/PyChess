@@ -27,7 +27,11 @@ To run: run ```py chess.py```.
   - 50-move rule
 
 ## Command-line switches
-Default playing mode is Player vs. Player. To play a different mode, use the following switches:
-- ```--black``` to play against White AI.
-- ```--white``` to play against White AI.
+Default playing mode is Player vs. Player. To play a different mode (vs. AI), use the following switches:
+- ```--black``` to play as Black.
+- ```--white``` to play as White.
 - ```--ai-vs-ai``` to watch 2 AI's battle it out!
+
+## Bonus: AI vs. itself
+(in progress).\
+![Alt text](media/out.gif?raw=true "AI vs. itself")

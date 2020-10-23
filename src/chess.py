@@ -51,6 +51,8 @@ def event_loop():
     Board.show_white()
     Board.check_end()
     pg.display.update()
+    if (Board.save_img and screen_capture):
+      Board.capture_image()
     if White.ai:
       if White.turn:
         White_.play()
@@ -63,6 +65,8 @@ def event_loop():
     Board.show_white()
     Board.check_end()
     pg.display.update()
+    if (Board.save_img and screen_capture):
+      Board.capture_image()
     if Black.ai:
       if Black.turn:
         Black_.play()

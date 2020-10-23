@@ -10,6 +10,7 @@ testing = False
 undo_key = True
 debug_key = True
 verbose = False
+screen_capture = True
 
 # choose from "only_pawns0", "only_pawns1", "knight_outpost0", "checkmate0", "checkmate1",
 # "stalamate0", "castle_k", "castle_q"

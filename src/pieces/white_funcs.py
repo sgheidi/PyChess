@@ -15,6 +15,7 @@ class White_Funcs(object):
       from white_ai import White_AI
       AI = White_AI()
       AI.generate_move()
+      Board.save_img = True
       White.turn = False
       Black.turn = True
     else:

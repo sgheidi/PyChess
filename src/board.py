@@ -19,6 +19,13 @@ class Game_Board(object):
     self.killed = {"piece": [], "pos": []}
     self.total_moves = 0
     self.freeze = False
+    self.save_img = False
+    self.num_screenshots = 0
+
+  def capture_image(self):
+    pg.image.save(win, "../media/frames/" + str(self.num_screenshots) + ".jpeg")
+    self.num_screenshots += 1
+    self.save_img = False
 
   def set_freeze(self):
     self.freeze = True

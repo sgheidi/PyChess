@@ -5,13 +5,14 @@ class Black_Attr(object):
 
   def __init__(self):
     # this is a constant that introduces randomness to the AI's moves within n.
-    # that is, if the best move is evaluated at x, then the AI will choose a random move
+    # that is, if the best move is evaluated as x, then the AI will choose a random move
     # in the bounds with evaluation [x - n, x]. Default n = 0.15
     self.AI_RANDOMNESS_THRESHOLD = 0.15
     # * AI rewards and penalties *
     self.PASSED_PAWN_REWARD = 0.0
     self.CONNECTED_PASSED_PAWN_REWARD = 2.8
     self.KNIGHT_OUTPOST_REWARD = 2.5
+    self.BISHOP_OUTPOST_REWARD = 1.2
     self.BISHOP_PAIR_REWARD = 0.90
     # king should be in its sides' corner when not in endgame
     self.KING_SAFETY_REWARD = 0.0
@@ -35,7 +36,7 @@ class Black_Attr(object):
     self.num_queens = 1
     self.en_passant = [0 for i in range(8)]
     self.castled = 0
-    self.opening_book = 0
+    self.opening_book = 1
     if len(sys.argv) == 1:
       self.ai = 0
     else:

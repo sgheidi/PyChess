@@ -79,6 +79,7 @@ class Black_Funcs(object):
       from black_ai import Black_AI
       AI = Black_AI()
       AI.generate_move()
+      Board.save_img = True
       White.turn = True
       Black.turn = False
     else:
