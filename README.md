@@ -34,4 +34,6 @@ Default playing mode is Player vs. Player. To play a different mode (vs. AI), us
 
 ## Bonus: AI vs. itself
 (**AI evaluations in progress**) <br /><br />
-<center><img src="media/out.gif" alt="AI vs. itself" width="300"/></center>
+<p align="center">
+<img src="media/out.gif" alt="AI vs. itself" width="300"/>
+</p>
