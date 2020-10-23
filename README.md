@@ -33,5 +33,5 @@ Default playing mode is Player vs. Player. To play a different mode (vs. AI), us
 - ```--ai-vs-ai``` to watch 2 AI's battle it out!
 
 ## Bonus: AI vs. itself
-(in progress). <br /><br />
-<img src="media/out.gif" alt="AI vs. itself" width="200"/>
+(**AI evaluations in progress**) <br /><br />
+<img src="media/out.gif" alt="AI vs. itself" width="400"/>
