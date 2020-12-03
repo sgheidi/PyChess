@@ -1,10 +1,6 @@
 # ♚ PyChess
 
-<<<<<<< HEAD
 Full-featured Chess game written using Python.
-=======
-Full-featured Chess game written using Pygame.
->>>>>>> 52b9c4203ea265837a9cf1f1cbff5035c7ee98db
 
 ## Screenshots
 
@@ -38,4 +34,4 @@ Default playing mode is Player vs. Player. To play a different mode (vs. AI), us
 
 ## Bonus: AI vs. itself
 (**AI evaluation functions in progress**) <br /><br />
-<img src="media/out.gif" alt="AI vs. itself" width="320"/>
+<img src="media/old/out.gif" alt="AI vs. itself" width="320"/>
