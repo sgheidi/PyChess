@@ -13,8 +13,8 @@ verbose = False
 screen_capture = True
 
 # choose from "only_pawns0", "only_pawns1", "knight_outpost0", "checkmate0", "checkmate1",
-# "stalamate0", "castle_k", "castle_q"
-env = ""
+# "stalamate0", "castle_k", "castle_q", "enpassant0"
+env = "checkmate0"
 
 accepted_args = ["--black", "--white", "--ai-vs-ai"]
 if len(sys.argv) > 2:

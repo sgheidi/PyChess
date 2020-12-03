@@ -1,6 +1,6 @@
 # ♚ PyChess
 
-Fully-featured Chess game written using Pygame.
+Full-featured Chess game written using Python.
 
 ## Screenshots
 
