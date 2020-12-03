@@ -4,8 +4,8 @@ Full-featured Chess game written using Python.
 
 ## Screenshots
 
-<img src="media/screenshots/3r.png" alt="Screenshot 1" width="320"/>&nbsp; &nbsp; &nbsp;
-<img src="media/screenshots/2rr.png" alt="Screenshot 2" width="320"/>
+<img src="media/screenshots/3r.png" alt="Screenshot 1" width="250"/>&nbsp; &nbsp; &nbsp;
+<img src="media/screenshots/2rr.png" alt="Screenshot 2" width="250"/>
 
 ## How to play
 
